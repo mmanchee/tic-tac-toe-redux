@@ -6,9 +6,9 @@ import Footer from './Footer';
 function App() {
   return (
     <React.Fragment>
-      <div>
+      <div className="contain">
         <Header />
-        <div>
+        <div id="spacing">
           <Game />
         </div>
         <Footer />
