@@ -1,10 +1,19 @@
 import React from 'react';
 import Game from './Game';
+import Header from './Header';
+import Footer from './Footer';
 
 function App() {
   return (
     <React.Fragment>
-      <Game />
+      <div>
+        <Header />
+        <div>
+          <Game />
+        </div>
+        <Footer />
+      </div>
+      
     </React.Fragment>
   );
 }
