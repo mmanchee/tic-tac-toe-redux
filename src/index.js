@@ -8,7 +8,7 @@ import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-console.log(rootReducer);
+
 
 const store = createStore(rootReducer, devToolsEnhancer());
 

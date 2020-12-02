@@ -4,20 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Game extends React.Component {
-
-  constructor(props){
-    super(props)
-    // this.state = {
-    //   history: [{
-    //     squares: Array(9).fill(null),
-    //   }],
-    //   stepNumber: 0,
-    //   xIsNext: true
-    // };
-  }
   
   handleClick(i) {
-    console.log("props ", this.props);
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -25,7 +13,6 @@ class Game extends React.Component {
       return;
     }
     squares[i] = this.props.xIsNext ? 'X' : 'O';
-    //
     const {dispatch} = this.props;
     const action = {
       type: "MOVE",
@@ -36,8 +23,6 @@ class Game extends React.Component {
       xIsNext: !this.props.xIsNext,
     }
     dispatch(action);
-    console.log('ddddddddd',action);
-    console.log("props ", this.props);
   }
 
   jumpTo(step) {
@@ -49,18 +34,11 @@ class Game extends React.Component {
       xIsNext: (step % 2) === 0,
     }
     dispatch(action);
-    // this.setState({
-    //   stepNumber: step,
-    //   xIsNext: (step % 2) === 0,
-    // });
   }
-
   render() {
-    console.log('render props', this.props)
     const history = this.props.history;
-    const current = history[this.props.stepNumber]
+    const current = history[this.props.stepNumber];
     const winner = calculateWinner(current.squares);
-    
     const moves = history.map((step,move) => {
       const desc = move ?
       'Go to move #' + move :
@@ -115,22 +93,17 @@ function calculateWinner(squares) {
   return null;
 }
 
-
 Game.propTypes ={
-  //test: PropTypes.object,
   history: PropTypes.array,
   xIsNext: PropTypes.bool,
   stepNumber: PropTypes.number
 };
 
 const mapStateToProps = state => {
-  console.log("state map ", state);
-
   return {
-    //test: state.history,
-    history: state.history.history,
-    xIsNext: state.history.xIsNext,
-    stepNumber: state.history.stepNumber,
+    history: state.history,
+    xIsNext: state.xIsNext,
+    stepNumber: state.stepNumber,
   }
 }
 
